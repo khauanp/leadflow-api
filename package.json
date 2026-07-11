@@ -1,0 +1,17 @@
+{
+  "name": "leadflow-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.109.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "ws": "^8.21.0"
+  }
+}
