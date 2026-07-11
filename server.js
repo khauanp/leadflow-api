@@ -247,7 +247,7 @@ app.post('/api/auth/login', async (req, res) => {
     const { email, password } = req.body || {};
     if (!email || !password) return res.status(422).json({ error: 'Email e senha obrigatórios' });
     const { data, error } = await authClient.auth.signInWithPassword({ email, password });
-    if (error) return res.status(401).json({ error: 'Credenciais inválidas', debug: error.message, has_url: !!process.env.SUPABASE_URL, has_svc: !!process.env.SUPABASE_SERVICE_KEY, has_anon: !!process.env.SUPABASE_ANON_KEY });
+    if (error) return res.status(401).json({ error: 'Credenciais inválidas', debug: error.message, url_val: process.env.SUPABASE_URL, anon_prefix: (process.env.SUPABASE_ANON_KEY||'').slice(0,12) });
     const urow = await q(supabase.from('users').select('id, company_id, name, email, role').eq('id', data.user.id).single());
     res.json({ token: data.session.access_token, user: urow });
   } catch (e) { res.status(500).json({ error: e.message }); }
